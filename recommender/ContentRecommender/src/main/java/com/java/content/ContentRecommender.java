@@ -42,7 +42,6 @@ public class ContentRecommender {
         configMap.put("mongo.db", "recommender");
 
         SparkConf sparkConf = new SparkConf().setMaster((String)configMap.get("spark.cores")).setAppName("OfflineRecommender");
-
         SparkSession spark = SparkSession.builder().config(sparkConf).getOrCreate();
 
 

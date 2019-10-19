@@ -173,10 +173,10 @@ public class StreamingRecommender {
         Map increMap = new HashMap();
         Map decreMap = new HashMap();
 
-        for(String eachMovie: candidateMovies; eachRating: userRecentRatings) {
+      /*  for(String eachMovie: candidateMovies; eachRating: userRecentRatings) {
 
 
-        }
+        }*/
 
     }
 
