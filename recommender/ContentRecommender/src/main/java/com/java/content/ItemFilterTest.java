@@ -34,7 +34,7 @@ public class ItemFilterTest {
         Map configMap = new HashMap();
         configMap.put("spark.cores", "local[*]");
 
-        SparkConf sparkConf = new SparkConf().setMaster((String) configMap.get("spark.cores")).setAppName("OfflineRecommender");
+        SparkConf sparkConf = new SparkConf().setMaster((String) configMap.get("spark.cores")).setAppName("ItemFilterTest");
 
         JavaSparkContext context = new JavaSparkContext(sparkConf);
         JavaPairRDD<String, Tuple2<String, Double>> inputDataRDD = context.textFile(inputPath).mapToPair(line -> {
@@ -77,7 +77,7 @@ public class ItemFilterTest {
             Object[] itemScoreArray = IteratorUtils.toArray(iterator);
             double sum = 0.0;
             for (int i = 0; i < itemScoreArray.length; i++) {
-                Tuple2<String, Double> tuple2 = (Tuple2<String, Double>) itemScoreArray[i];  //iterator.next();  //
+                Tuple2<String, Double> tuple2 = (Tuple2<String, Double>) itemScoreArray[i];
                 sum += Math.pow(tuple2._2, 2);
             }
             sum = Math.sqrt(sum);
@@ -159,7 +159,5 @@ public class ItemFilterTest {
         outputRDD.foreach(eachStr -> {
             FileUtils.writeStringToFile(new File("output.csv"), eachStr + "\r\n", true);
         });
-
-        // System.out.println("count " + userItemNormalized.count());
     }
 }
